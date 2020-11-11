@@ -1,5 +1,6 @@
 import * as sequelize from 'sequelize';
 import { DB_HOST, DB_NAME, DB_PASSWORD, DB_PORT, DB_USER } from '../config/env';
+import { logger } from '../util/logger';
 
 export const dbConfig = new sequelize.Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
   port: Number(DB_PORT) || 54320,
@@ -12,3 +13,13 @@ export const dbConfig = new sequelize.Sequelize(DB_NAME, DB_USER, DB_PASSWORD, {
     idle: 10000,
   },
 });
+
+export const connectToDatabase = async () => {
+  try {
+    await dbConfig.sync();
+    logger.info('Connected to the database successfully');
+  } catch (error) {
+    logger.error(`Could not connect to the database, ${error}`);
+    throw new Error(error);
+  }
+};

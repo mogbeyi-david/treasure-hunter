@@ -4,9 +4,12 @@ import express from 'express';
 import { NextFunction, Response } from 'express';
 import morgan from 'morgan';
 import ResponseHandler from './util/response-handler';
+import { connectToDatabase } from './models/connection';
 
 import { ExpressRequest } from './util/express';
-
+connectToDatabase()
+  .then((response) => console.log(response))
+  .catch((error) => console.log(error));
 const app = express();
 
 app.use(morgan('combined'));
