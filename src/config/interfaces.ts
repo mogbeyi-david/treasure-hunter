@@ -23,3 +23,6 @@ export interface MoneyValueInterface {
   createdAt?: Date;
   updatedAt?: Date;
 }
+
+export type ResponseType = Response | void;
+
