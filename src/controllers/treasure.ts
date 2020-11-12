@@ -9,12 +9,13 @@ export async function find(
   res: Response,
   next: NextFunction,
 ): Promise<ResponseType> {
-  const { latitude, longitude, distance } = req.body;
+  const { latitude, longitude, distance, prizeValue } = req.body;
   try {
     const result = await TreasureRepository.getInRadius({
       latitude,
       longitude,
       distance,
+      prizeValue
     });
     return ResponseHandler.sendSuccessResponse({ res, data: { result } });
   } catch (error) {
