@@ -29,7 +29,8 @@ export interface MoneyValueInterface {
 }
 
 export interface MigrationInterface {
-  id: string;
+  id?: number;
+  uuid?: string;
   title: string;
   description: string;
   runCount?: number;

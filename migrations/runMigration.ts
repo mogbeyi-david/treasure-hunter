@@ -5,7 +5,7 @@ import { logger } from '../src/util/logger';
  * Runs a given DB migration function and stores the function's id and details
  *
  * @param {({
- *   id: string;
+ *   uuid: string;
  *   title: string;
  *   description: string;
  *   func: () => object | symbol | string | number;
@@ -20,14 +20,14 @@ import { logger } from '../src/util/logger';
  * @returns
  */
 export async function runMigration({
-  id,
+  uuid,
   title,
   description,
   func,
   disabled,
   unique = true,
 }: {
-  id: string;
+  uuid: string;
   title: string;
   description: string;
   func: () => object | symbol | string | number | void;
@@ -44,21 +44,20 @@ export async function runMigration({
   }
 
   logger.info(
-    `Running migration...:\nid: ${id}\ntitle: ${title}\ndescription: ${description}`,
+    `Running migration...:\nid: ${uuid}\ntitle: ${title}\ndescription: ${description}`,
   );
 
-  const migration = await Migration.findOne({ where: { id } });
-  if (!migration) {
-    return;
+  const migration = await Migration.findOne({ where: { uuid } });
+  if (migration) {
+    //@ts-ignore
+    migration.runCount = migration.runCount + 1;
+    migration.lastRun = new Date();
+    await migration.save();
   }
-  //@ts-ignore
-  migration.runCount = migration.runCount + 1;
-  migration.lastRun = new Date();
-  await migration.save()
 
   try {
     const op = await func();
-    await Migration.create({ id, title, description })
+    await Migration.create({ uuid, title, description })
       .then(() => {
         logger.info('Migration successful and saved');
         logger.info(`Output:\n ${JSON.stringify(op)}`);

@@ -17,6 +17,9 @@ export function MigrationFactory(sequelize: Sequelize): MigrationStatic {
       autoIncrement: true,
       primaryKey: true,
     },
+    uuid: {
+      type: DataTypes.STRING,
+    },
     title: {
       type: DataTypes.STRING,
       allowNull: false,
