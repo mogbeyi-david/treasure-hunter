@@ -7,6 +7,7 @@ import ResponseHandler from './util/response-handler';
 import { connectToDatabase } from './models/connection';
 
 import user from './routes/user';
+import treasure from './routes/treasure';
 
 
 import { ExpressRequest } from './util/express';
@@ -22,6 +23,7 @@ app.use(urlencoded({ extended: true }));
 app.use(json());
 
 app.use('/users', user);
+app.use('/treasures', treasure);
 
 // ROUTES
 app.get('/', async (req: ExpressRequest, res: Response) => {
