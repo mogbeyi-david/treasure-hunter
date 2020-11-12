@@ -10,8 +10,8 @@ export class CreateTreasuresMigrations {
     const treasures: TreasureInterface[] = jsonData;
     for (const treasure of treasures) {
       const result = await TreasureRepository.create({
-        latitude: treasure.latitude,
-        longitude: treasure.longitude,
+        latitude: Number(treasure.latitude),
+        longitude: Number(treasure.longitude),
         name: treasure.name,
       });
       if (result && result.id) {

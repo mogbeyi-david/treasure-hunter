@@ -21,11 +21,12 @@ export interface TreasureInterface {
 
 export interface MoneyValueInterface {
   id?: number;
-  treasureId: number;
+  treasureId?: number;
   amount: number;
   isCollected: boolean;
   createdAt?: Date;
   updatedAt?: Date;
+  treasure_id?: number;
 }
 
 export interface MigrationInterface {

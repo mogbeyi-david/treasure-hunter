@@ -20,7 +20,7 @@ class TreasureRepository {
   }
 
   public async deleteAll(): Promise<number> {
-    return Treasure.destroy();
+    return Treasure.destroy({where: {}});
   }
 }
 

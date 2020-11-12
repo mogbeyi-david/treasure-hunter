@@ -1,7 +1,7 @@
 [
   {
     "longitude": "103.8980486",
-    "latitude": "100,1.33125924",
+    "latitude": "1.33125924",
     "name": "T1"
   },
   {
@@ -10,13 +10,13 @@
     "name": "T2"
   },
   {
-    "latitude": "1.3166356T3",
+    "latitude": "1.31663563",
     "longitude": "103.8891225",
     "name": "T3"
   },
   {
     "latitude": "1.31286055",
-    "longitude,Name": "103.8545565",
+    "longitude": "103.8545565",
     "name": "T4"
   }
 ]

@@ -25,7 +25,7 @@ class UserRepository {
   }
 
   public async deleteAll(): Promise<number> {
-    return User.destroy();
+    return User.destroy({where: {}});
   }
 }
 

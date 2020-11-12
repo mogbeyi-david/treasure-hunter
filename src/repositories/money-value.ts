@@ -10,14 +10,14 @@ class MoneyValueRepository {
     amount: number;
   }): Promise<MoneyValueModel> {
     return MoneyValue.create({
-      treasureId,
+      treasure_id: treasureId,
       amount,
       isCollected: false,
     });
   }
 
   public async deleteAll(): Promise<number> {
-    return MoneyValue.destroy();
+    return MoneyValue.destroy({where: {}});
   }
 }
 

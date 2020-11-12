@@ -6,9 +6,9 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "tsc && nodemon dist/index.js",
-    "postinstall": "npm run migrate:up",
-    "migrate:up": "ts-node migrations/up.ts",
-    "migrate:down": "ts-node migrations/down.ts"
+    "postinstall": "npm run db:up",
+    "db:up": "ts-node migrations/up.ts",
+    "db:down": "ts-node migrations/down.ts"
   },
   "keywords": [],
   "author": "",
