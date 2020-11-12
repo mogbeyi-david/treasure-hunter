@@ -7,7 +7,6 @@ import UserRepository from '../../src/repositories/user';
 export class CreateUserMigrations {
   public static async up() {
     const users: UserInterface[] = jsonData;
-    console.log('users', users);
     for (const user of users) {
       await UserRepository.create({
         name: user.name,

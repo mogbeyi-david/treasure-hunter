@@ -3,22 +3,28 @@ import { TreasureInterface } from '../../src/config/interfaces';
 
 const jsonData = require('../../src/seed-data/treasures.json');
 import TreasureRepository from '../../src/repositories/treasure';
+import MoneyValueRepository from '../../src/repositories/money-value';
 
 export class CreateTreasuresMigrations {
   public static async up() {
-    const users: TreasureInterface[] = jsonData;
-    console.log('users', users);
-    for (const user of users) {
-      await UserRepository.create({
-        name: user.name,
-        email: user.email,
-        age: user.age,
-        password: user.password,
+    const treasures: TreasureInterface[] = jsonData;
+    for (const treasure of treasures) {
+      const result = await TreasureRepository.create({
+        latitude: treasure.latitude,
+        longitude: treasure.longitude,
+        name: treasure.name,
       });
+      if (result && result.id) {
+        await MoneyValueRepository.create({ treasureId: result.id, amount: 10 });
+        await MoneyValueRepository.create({ treasureId: result.id, amount: 20 });
+        await MoneyValueRepository.create({ treasureId: result.id, amount: 30 });
+      }
     }
   }
 
   public static async down() {
-    return UserRepository.deleteAll();
+    await TreasureRepository.deleteAll();
+    await MoneyValueRepository.deleteAll();
+    return
   }
 }

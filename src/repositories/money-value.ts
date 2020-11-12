@@ -15,6 +15,10 @@ class MoneyValueRepository {
       isCollected: false,
     });
   }
+
+  public async deleteAll(): Promise<number> {
+    return MoneyValue.destroy();
+  }
 }
 
-export default new MoneyValueRepository()
+export default new MoneyValueRepository();

@@ -18,6 +18,10 @@ class TreasureRepository {
       name,
     });
   }
+
+  public async deleteAll(): Promise<number> {
+    return Treasure.destroy();
+  }
 }
 
 export default new TreasureRepository();
