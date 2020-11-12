@@ -1,5 +1,6 @@
 import { Treasure } from '../models';
 import { TreasureModel } from '../models/treasure';
+import exp from 'constants';
 
 class TreasureRepository {
   public async create({
@@ -18,3 +19,5 @@ class TreasureRepository {
     });
   }
 }
+
+export default new TreasureRepository();

@@ -20,7 +20,7 @@ export interface TreasureInterface {
 }
 
 export interface MoneyValueInterface {
-  id: number;
+  id?: number;
   treasureId: number;
   amount: number;
   isCollected: boolean;
