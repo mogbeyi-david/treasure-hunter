@@ -28,4 +28,15 @@ export interface MoneyValueInterface {
   updatedAt?: Date;
 }
 
+export interface MigrationInterface {
+  id: string;
+  title: string;
+  description: string;
+  runCount?: number;
+  lastRun?: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
+}
+
+
 export type ResponseType = Response | void;

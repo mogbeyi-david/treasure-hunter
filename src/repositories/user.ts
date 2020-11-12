@@ -24,6 +24,10 @@ class UserRepository {
     const hashedPassword = await bcrypt.hash(password, salt);
     return await User.create({ name, age, email, password: hashedPassword });
   }
+
+  public async deleteAll(): Promise<number> {
+    return User.destroy();
+  }
 }
 
 export default new UserRepository();

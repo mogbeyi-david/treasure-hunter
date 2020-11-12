@@ -1,5 +1,23 @@
-class CreateUserMigrations {
-  public async up() {}
+import fs from 'fs';
+import { UserInterface } from '../../src/config/interfaces';
 
-  public async down() {}
+const jsonData = require('../../src/seed-data/users.json');
+import UserRepository from '../../src/repositories/user';
+
+export class CreateUserMigrations {
+  public static async up() {
+    const users: UserInterface[] = JSON.parse(jsonData);
+    for (const user of users) {
+      await UserRepository.create({
+        name: user.name,
+        email: user.email,
+        age: user.age,
+        password: user.password,
+      });
+    }
+  }
+
+  public static async down() {
+    return UserRepository.deleteAll();
+  }
 }
