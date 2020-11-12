@@ -51,6 +51,7 @@ export async function runMigration({
   if (!migration) {
     return;
   }
+  //@ts-ignore
   migration.runCount = migration.runCount + 1;
   migration.lastRun = new Date();
   await migration.save()
