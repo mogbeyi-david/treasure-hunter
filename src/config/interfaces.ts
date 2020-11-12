@@ -1,3 +1,5 @@
+import { Response } from 'express';
+
 export interface UserInterface {
   id: number;
   name: string;
@@ -25,4 +27,3 @@ export interface MoneyValueInterface {
 }
 
 export type ResponseType = Response | void;
-

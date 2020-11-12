@@ -20,7 +20,7 @@ export function UserFactory(sequelize: Sequelize): UserStatic {
       allowNull: false,
     },
     age: {
-      type: DataTypes.NUMBER,
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
     email: {

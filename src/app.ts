@@ -6,6 +6,9 @@ import morgan from 'morgan';
 import ResponseHandler from './util/response-handler';
 import { connectToDatabase } from './models/connection';
 
+import user from './routes/user';
+
+
 import { ExpressRequest } from './util/express';
 connectToDatabase()
   .then((response) => console.log(response))
@@ -17,6 +20,8 @@ app.use(morgan('combined'));
 app.use(cors());
 app.use(urlencoded({ extended: true }));
 app.use(json());
+
+app.use('/users', user);
 
 // ROUTES
 app.get('/', async (req: ExpressRequest, res: Response) => {

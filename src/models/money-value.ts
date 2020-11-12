@@ -20,7 +20,10 @@ export function MoneyValueFactory(sequelize: Sequelize): MoneyValueStatic {
     treasure_id: {
       type: DataTypes.INTEGER,
       allowNull: false,
-      references: 'treasures',
+      references: {
+        model: 'treasures',
+        key: 'id'
+      },
     },
     amount: {
       type: DataTypes.FLOAT,

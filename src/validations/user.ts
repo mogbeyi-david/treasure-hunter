@@ -10,9 +10,10 @@ export async function validateCreateUser(
   next: NextFunction,
 ): Promise<ResponseType> {
   const schema = Joi.object().keys({
+    name: Joi.string().required(),
     email: Joi.string().email().required(),
+    age: Joi.number().strict().positive().min(18).required(),
     password: Joi.string().required(),
-    acceptedTermsAndConditions: Joi.boolean().valid(true).required(),
   });
   const validation = schema.validate(req.body);
   if (validation.error) {
