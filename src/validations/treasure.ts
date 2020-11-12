@@ -33,3 +33,31 @@ export async function validateFindTreasure(
   }
   return next();
 }
+
+export async function validateCreateTreasure(
+  req: ExpressRequest,
+  res: Response,
+  next: NextFunction,
+): Promise<ResponseType> {
+  const schema = Joi.object().keys({
+    latitude: Joi.number().strict().required(),
+    longitude: Joi.number().strict().required(),
+    name: Joi.string().required(),
+    prizeValues: Joi.array().items(
+      Joi.number()
+        .integer()
+        .strict()
+        .positive()
+        .min(PRICE_VALUE_RANGE.MINIMUM)
+        .max(PRICE_VALUE_RANGE.MAXIMUM),
+    ),
+  });
+  const validation = schema.validate(req.body);
+  if (validation.error) {
+    return ResponseHandler.sendErrorResponse({
+      res,
+      error: validation.error.details[0].message,
+    });
+  }
+  return next();
+}

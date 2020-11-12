@@ -21,6 +21,7 @@ class TreasureRepository {
     });
   }
 
+
   public async getInRadius({
     latitude,
     longitude,

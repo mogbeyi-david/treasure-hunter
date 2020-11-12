@@ -16,8 +16,27 @@ class MoneyValueRepository {
     });
   }
 
+  public async createMany({
+    treasureId,
+    amounts,
+  }: {
+    treasureId: number;
+    amounts: number[];
+  }): Promise<MoneyValueModel[]> {
+    let moneyValues = [];
+    for (const amount of amounts) {
+      const moneyValue = await MoneyValue.create({
+        treasure_id: treasureId,
+        amount,
+        isCollected: false,
+      });
+      moneyValues.push(moneyValue);
+    }
+    return moneyValues;
+  }
+
   public async deleteAll(): Promise<number> {
-    return MoneyValue.destroy({where: {}});
+    return MoneyValue.destroy({ where: {} });
   }
 }
 
