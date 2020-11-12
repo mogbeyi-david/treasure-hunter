@@ -1,6 +1,8 @@
 import { Treasure } from '../models';
 import { TreasureModel } from '../models/treasure';
-import exp from 'constants';
+import { dbConfig } from '../models/connection';
+import { QueryTypes } from 'sequelize';
+import { TreasureInterface } from '../config/interfaces';
 
 class TreasureRepository {
   public async create({
@@ -19,8 +21,22 @@ class TreasureRepository {
     });
   }
 
+  public async getInRadius({
+    latitude,
+    longitude,
+    distance,
+  }: {
+    latitude: number;
+    longitude: number;
+    distance: number;
+  }): Promise<TreasureInterface[]> {
+    const query = `SELECT * FROM treasures WHERE acos(sin(${latitude}) * sin(latitude) + cos(${latitude}) 
+    * cos(latitude) * cos(longitude - (${longitude}))) * 6371 <= ${distance}`;
+    return await dbConfig.query(query, { raw: true, type: QueryTypes.SELECT });
+  }
+
   public async deleteAll(): Promise<number> {
-    return Treasure.destroy({where: {}});
+    return Treasure.destroy({ where: {} });
   }
 }
 
