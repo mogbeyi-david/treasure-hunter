@@ -1,6 +1,6 @@
 import { runMigration } from './runMigration';
 import { CreateUserMigrations } from './scripts/create-users';
-import { generateRandomString } from '../src/util/generate-random-string';
+import { CreateTreasuresMigrations } from './scripts/create-treasures';
 
 async function main(): Promise<void> {
   await runMigration({
@@ -8,6 +8,13 @@ async function main(): Promise<void> {
     title: 'Create Users',
     description: 'Run migrations to create users',
     func: CreateUserMigrations.up,
+  });
+
+  await runMigration({
+    uuid: 'kadfakjsdfb,akjgdadhalskfhlvahflaebaej',
+    title: 'Create Treasures and Money Values',
+    description: 'Run migrations to create treasures and money values',
+    func: CreateTreasuresMigrations.up,
   });
 
   process.exit();
