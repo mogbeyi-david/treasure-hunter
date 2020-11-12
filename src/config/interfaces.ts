@@ -1,9 +1,11 @@
 import { Response } from 'express';
 
 export interface UserInterface {
-  id: number;
+  id?: number;
   name: string;
   email: string;
+  age: number;
+  password: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

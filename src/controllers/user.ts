@@ -3,6 +3,7 @@ import { ExpressRequest } from '../util/express';
 import { ResponseType } from '../config/interfaces';
 import ResponseHandler from '../util/response-handler';
 import UserRepository from '../repositories/user';
+import * as UserHelpers from '../helpers/user'
 
 export async function signUp(
   req: ExpressRequest,
@@ -30,9 +31,12 @@ export async function signUp(
       });
     }
 
+    const result = await UserRepository.create({ name, age, email, password });
+    const user = UserHelpers.removeUserPassword(result);
     return ResponseHandler.sendSuccessResponse({
       res,
-      message: 'Now we getting to the good stuffs',
+      data: { user },
+      message: 'User created successfully',
     });
   } catch (error) {
     return next(error);

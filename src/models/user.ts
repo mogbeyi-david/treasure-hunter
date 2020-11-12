@@ -21,7 +21,7 @@ export function UserFactory(sequelize: Sequelize): UserStatic {
     },
     age: {
       type: DataTypes.INTEGER,
-      allowNull: true,
+      allowNull: false,
     },
     email: {
       type: DataTypes.STRING,

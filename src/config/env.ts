@@ -21,3 +21,8 @@ export const DB_PASSWORD = throwIfUndefined(
 export const DB_PORT = throwIfUndefined(process.env.DB_PORT, 'DB_PORT');
 
 export const DB_HOST = throwIfUndefined(process.env.DB_HOST, 'DB_HOST');
+
+export const SALT_ROUNDS = throwIfUndefined(
+  process.env.SALT_ROUNDS,
+  'SALT_ROUNDS',
+);
