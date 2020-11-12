@@ -1,4 +1,5 @@
 import { Response } from 'express';
+import exp from 'constants';
 
 export interface UserInterface {
   id?: number;
@@ -40,5 +41,8 @@ export interface MigrationInterface {
   updatedAt?: Date;
 }
 
+export interface TreasureMoneyValueInterface
+  extends TreasureInterface,
+    MoneyValueInterface {}
 
 export type ResponseType = Response | void;
