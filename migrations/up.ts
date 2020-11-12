@@ -4,7 +4,7 @@ import { generateRandomString } from '../src/util/generate-random-string';
 
 async function main(): Promise<void> {
   await runMigration({
-    id: 'jkjlsdhflksjfsjkdbskfjhafjlbalkjdfgakfs',
+    uuid: 'jkjlsdhflksjfsjkdbskfjhafjlbalkjdfgakfs',
     title: 'Create Users',
     description: 'Run migrations to create users',
     func: CreateUserMigrations.up,

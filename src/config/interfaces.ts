@@ -11,7 +11,7 @@ export interface UserInterface {
 }
 
 export interface TreasureInterface {
-  id: number;
+  id?: number;
   latitude: number;
   longitude: number;
   name: string;

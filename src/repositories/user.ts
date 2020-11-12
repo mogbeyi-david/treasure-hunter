@@ -1,4 +1,3 @@
-import { UserInterface } from '../config/interfaces';
 import { User } from '../models';
 import { UserModel } from '../models/user';
 import bcrypt from 'bcrypt';

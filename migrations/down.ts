@@ -4,8 +4,9 @@ import { CreateUserMigrations } from './scripts/create-users';
 
 async function main(): Promise<void> {
   await runMigration({
-    id: generateRandomString(16),
+    uuid: 'dduyeujdhejdhejdehjdabhjabdakdb',
     title: 'Create Users - Reverse',
+    description: 'Run migrations to delete users',
     func: CreateUserMigrations.down,
   });
 
