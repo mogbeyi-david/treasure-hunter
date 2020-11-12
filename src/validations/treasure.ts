@@ -43,14 +43,17 @@ export async function validateCreateTreasure(
     latitude: Joi.number().strict().required(),
     longitude: Joi.number().strict().required(),
     name: Joi.string().required(),
-    prizeValues: Joi.array().items(
-      Joi.number()
-        .integer()
-        .strict()
-        .positive()
-        .min(PRICE_VALUE_RANGE.MINIMUM)
-        .max(PRICE_VALUE_RANGE.MAXIMUM),
-    ),
+    prizeValues: Joi.array()
+      .items(
+        Joi.number()
+          .integer()
+          .strict()
+          .positive()
+          .min(PRICE_VALUE_RANGE.MINIMUM)
+          .max(PRICE_VALUE_RANGE.MAXIMUM),
+      )
+      .min(1)
+      .max(5),
   });
   const validation = schema.validate(req.body);
   if (validation.error) {
